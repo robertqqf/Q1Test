@@ -1,0 +1,10 @@
+<div class="hero-unit">
+  <%= form_tag('p_data') do -%>
+    <%= label_tag 'ccn', '选择所属城市' %>
+    <%= select_tag 'ccn', options_from_collection_for_select(@cc, 'city_code', 'city_name'), prompt: '请选择你所在城市' %>
+    <%= label_tag 'cs', '测试次数' %>
+    <%= select_tag 'cs', options_from_collection_for_select(@cs, :first, :last), prompt: '请选择你要测试的次数' %>
+    <br>
+    <%= submit_tag('提交数据', class: 'btn btn-primary btn-large') %>
+  <% end %>
+</div>
