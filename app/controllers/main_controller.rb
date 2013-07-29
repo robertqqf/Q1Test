@@ -16,4 +16,21 @@ class MainController < ApplicationController
     TestDb.create(city_code: ccn, cs: cs, count: 0,status: 0,user_id: 1)
 
   end
+
+  def item
+    @cc = CityCode.all
+    @item = ContactInfo.new
+  end
+
+  def p_item
+    ContactInfo.create(ci_params)
+    redirect_to action: 'index'
+  end
+
+  private
+
+  def ci_params
+    params.required(:contact_info).permit(:company,:name,:contact_info,:mac,:comment)
+  end
+
 end

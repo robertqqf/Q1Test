@@ -6,8 +6,8 @@ Q1Test::Application.routes.draw do
   # root 'welcome#index'
   resources :main,only: [] do
     collection do
-      get 'index','q1_test'
-      post 'p_data'
+      get 'index','q1_test','item'
+      post 'p_data','p_item'
     end
   end
   root 'main#index'
