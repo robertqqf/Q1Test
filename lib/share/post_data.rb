@@ -66,7 +66,6 @@ module PostData
 
 
       #tt = { :contact => '李宁' }.to_query
-      puts tt
     end
   end
 end

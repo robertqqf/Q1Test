@@ -11,11 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130729143821) do
+ActiveRecord::Schema.define(version: 20130801154845) do
 
   create_table "city_codes", force: true do |t|
     t.string   "city_name"
     t.integer  "city_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "client_nos", force: true do |t|
+    t.string   "c_no"
+    t.integer  "city_code_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -47,6 +55,7 @@ ActiveRecord::Schema.define(version: 20130729143821) do
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "city_code_id"
   end
 
 end
