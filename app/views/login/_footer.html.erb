@@ -1,0 +1,23 @@
+<hr>
+<footer>
+  <p>&copy; 韶关网维中心易其锋 2013年7月27日</p>
+</footer>
+<script type="text/javascript">
+  jQuery(function ($) {
+    /**
+     * Sets active and expands menu items based on id of body tag of current page
+     * e.g. <body id="body-index-page"> will result in the menu item with the id="navigation-index-page" having the
+     * class 'active' added, subsequently it will look for a child div with a class of collapse and add the class 'in'
+     * and set the height to auto
+     */
+
+    $('nav li').each(function () {
+      $this.removeClass('active');
+    });
+    var body_id = $('body').attr('id');
+    if (body_id != null) {
+      var nav_element = $('#nav-' + body_id);
+      nav_element.addClass('active');
+    }
+  });
+</script>

@@ -1,0 +1,32 @@
+// Place all the styles related to the login controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+    background-color: #E0E0E0;
+    background-image: url("wood.png");
+    margin: 0;
+    padding: 0;
+}
+
+.login-box {
+    background-color: #FFFFFF;
+    border: 5px solid #C6E298;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
+    margin: 10px auto 5px;
+    padding: 0;
+}
+
+.login-box .login-box-header {
+    background-color: whitesmoke;
+    border-bottom: 1px solid #E8E8E8;
+    color: #444444;
+    font-size: 3em;
+    font-weight: bold;
+    height: 70px;
+    line-height: 70px;
+    margin-top: 0px;
+    padding-left: 10px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+}

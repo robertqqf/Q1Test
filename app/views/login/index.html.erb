@@ -1,0 +1,26 @@
+<div class="login-box">
+  <div class="login-box-header">
+    Q1值提升测试系统
+  </div>
+
+  <p></p>
+
+  <div class="row">
+    <%= form_tag('login/login', method: :post) do -%>
+      <div class="span4 offset4">
+        <%= label_tag 'name','用户名' %>
+        <%= text_field_tag 'name', nil, placeholder: '输入用户名' %>
+      </div>
+      <div class="span4 offset4">
+        <%= label_tag 'pass','密码' %>
+        <%= text_field_tag 'pass', nil, placeholder: '输入密码' %>
+      </div>
+      <div class="span4 offset4">
+      <%= submit_tag('登录系统', class: 'btn btn-primary btn-large') %>
+      </div>
+    <% end %>
+  </div>
+
+  <p></p>
+
+</div>

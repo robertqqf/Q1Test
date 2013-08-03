@@ -1,8 +1,5 @@
 <div class="hero-unit">
-  <%= form_tag('p_data',id: 'vform') do -%>
-    <%= label_tag 'ccn', '选择所属城市' %>
-    <%= select_tag 'ccn', options_from_collection_for_select(@cc, 'city_code', 'city_name'), prompt: '请选择你所在城市', required: true %>
-    <br>
+  <%= form_tag('p_data', id: 'vform') do -%>
     <%= label_tag 'cs', '测试次数' %>
     <%= select_tag 'cs', options_from_collection_for_select(@cs, :first, :last), prompt: '请选择你要测试的次数', required: true %>
     <br>

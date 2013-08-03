@@ -10,7 +10,14 @@ Q1Test::Application.routes.draw do
       post 'p_data','p_item'
     end
   end
-  root 'main#index'
+
+  resources :login,only:[] do
+    collection do
+      get 'index'
+      post 'login'
+    end
+  end
+  root 'login#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

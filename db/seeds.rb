@@ -28,7 +28,15 @@ CityCode.create(city_name: '阳江', city_code: 18)
 CityCode.create(city_name: '揭阳', city_code: 19)
 CityCode.create(city_name: '潮州', city_code: 20)
 
+#创建基础用户
+#status表示状态，如果为0则是正常，为1则为到底用户不允许登录。
+User.create(name: 'sgtt', email: 'yiqf@sg.cttgd.com', company: '中国铁通集团有限公司韶关分公司', status: '0', city_code_id: 6, password: 'e10adc3949ba59abbe56e057f20f883e',expire_date: '2013-10-1')
+User.create(name: 'qytt', email: 'zengww@qy.cttgd.com', company: '中国铁通集团有限公司清远分公司', status: '0', city_code_id: 14, password: 'e10adc3949ba59abbe56e057f20f883e',expire_date: '2013-10-1')
+User.create(name: 'zjtt', email: 'liangy@zj.cttgd.com', company: '中国铁通集团有限公司湛江分公司', status: '0', city_code_id: 15, password: 'e10adc3949ba59abbe56e057f20f883e',expire_date: '2013-10-1')
+User.create(name: 'jmtt', email: 'zhangc@jm.cttgd.com', company: '中国铁通集团有限公司江门分公司', status: '0', city_code_id: 10, password: 'e10adc3949ba59abbe56e057f20f883e',expire_date: '2013-10-1')
+User.create(name: 'mmtt', email: 'zhutm@mm.cttgd.com', company: '中国铁通集团有限公司茂名分公司', status: '0', city_code_id: 17, password: 'e10adc3949ba59abbe56e057f20f883e',expire_date: '2013-10-1')
 
+#创建基础用户数据库
 ContactInfo.create(name: '刘宁', contact_info: '10050', comment: 'XPON用户', mac: '08-00-27-00-9C-11')
 ContactInfo.create(name: '李春华', contact_info: '10050', comment: '铁通gpon用户。', mac: '00-53-45-00-00-00')
 ContactInfo.create(name: '郑大刚', contact_info: '10050', comment: 'xpon', mac: '84-2B-2B-6F-28-C8')

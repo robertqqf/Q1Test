@@ -8,8 +8,8 @@ class MainController < ApplicationController
   end
 
   def p_data
-    #城市代码
-    ccn = params[:ccn]
+    #城市代码,通过提取用户的city_code_id即可。
+    ccn = session[:ccn]
     #测试次数
     cs  = params[:cs]
     #计数器默认为0，然后累加至cs所指定的次数，status默认为0，如果测试完成改为1

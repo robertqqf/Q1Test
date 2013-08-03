@@ -9,6 +9,11 @@
 <body id="<%= yield(:body_id) %>">
 <%= render :partial => 'header' %>
 <div class="container">
+  <% flash.each do |k, v| %>
+  <div class="row">
+    <%= content_tag(:div, v, class: "alert alert-#{k} span4 offset4") %>
+  </div>
+  <% end %>
   <%= yield %>
   <%= render :partial => 'footer' %>
 </div>

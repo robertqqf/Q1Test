@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130801154845) do
+ActiveRecord::Schema.define(version: 20130803050857) do
 
   create_table "city_codes", force: true do |t|
     t.string   "city_name"
@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(version: 20130801154845) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "city_code_id"
+    t.string   "password"
+    t.date     "expire_date"
   end
 
 end
