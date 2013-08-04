@@ -17,6 +17,7 @@ module PostData
       posttime               = t_time.strftime("%Y-%-m-%-d %H:%M:%S")
       rtime                  = t_time.strftime("%a, %d %b %Y %H:%M:%S")
       #tt                     = "#{rtime}"
+      #todo:需要将每次的数据进行动态调整一下，以免每次的数据均一样。
       xml_data               = '<?xml version="1.0"?>
 <testset version="1.0" time="'+"#{rtime}"+'">
  <paras>
