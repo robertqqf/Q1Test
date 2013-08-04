@@ -6,7 +6,7 @@ Q1Test::Application.routes.draw do
   # root 'welcome#index'
   resources :main,only: [] do
     collection do
-      get 'index','q1_test','item'
+      get 'index','q1_test','item','logout'
       post 'p_data','p_item'
     end
   end
@@ -18,6 +18,8 @@ Q1Test::Application.routes.draw do
     end
   end
   root 'login#index'
+
+  get '/logout' => 'main#logout'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

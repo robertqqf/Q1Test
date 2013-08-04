@@ -18,8 +18,8 @@ namespace :database do
       if f.count < f.cs
         ci_tmp = ContactInfo.find(rand(length)+1)
         #todo:得到当前用户的city_code_id,正式部署的时候用
-        #cc     = session[:city_code_id]
-        cc     = 6
+        cc     = session[:city_code_id]
+        #cc     = 6
         #cno    = pd.get_client_no cc, ct, ci, memo, mac
         cno    = pd.get_client_no 6,ci_tmp
 puts '-'*50 + cno.to_s
