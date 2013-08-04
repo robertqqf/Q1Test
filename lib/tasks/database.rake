@@ -17,13 +17,11 @@ namespace :database do
     tdbs.each do |f|
       if f.count < f.cs
         ci_tmp = ContactInfo.find(rand(length)+1)
-        #todo:得到当前用户的city_code_id,正式部署的时候用
-        cc     = session[:city_code_id]
-        #cc     = 6
         #cno    = pd.get_client_no cc, ct, ci, memo, mac
-        cno    = pd.get_client_no 6,ci_tmp
-puts '-'*50 + cno.to_s
-        pd.send_data cc,cno,ci_tmp
+        cc     = f.city_code
+        cno    = pd.get_client_no cc, ci_tmp
+        puts '-'*50 + cno.to_s
+        pd.send_data cc, cno, ci_tmp
 
         f.update_attribute(:count, f.count + 1)
       elsif f.count == f.cs
