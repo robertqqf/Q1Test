@@ -11,7 +11,7 @@
 <div class="container">
   <% flash.each do |k, v| %>
   <div class="row">
-    <%= content_tag(:div, v, class: "alert alert-#{k} span4 offset4") %>
+    <%= content_tag(:div, v, class: "alert alert-#{k} span8 offset2") %>
   </div>
   <% end %>
   <%= yield %>
