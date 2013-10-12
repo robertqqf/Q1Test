@@ -8,43 +8,45 @@ module PostData
   class DataProcedure
 
     def send_data(cc, cno, f)
-      ct                     = URI::encode(f.name.to_s.encode "GBK", "UTF-8")
-      ci                     = URI::encode(f.contact_info.to_s.encode "GBK", "UTF-8")
-      memo                   = URI::encode(f.comment.to_s.encode "GBK", "UTF-8")
-      mac                    = URI::encode(f.mac.to_s.encode "GBK", "UTF-8")
-      uri                    = URI.parse("http://221.174.16.37/chinatt2/postresult_f2_2.php?provincecode=19&citycode=#{cc}&operatorcode=2&contact=#{ct}&contactinfo=#{ci}&no=#{cno}&MACADDR=#{mac}&ver=2.0.3&memo=#{memo}")
-      t_time                 = Time.now - 30.second
-      posttime               = t_time.strftime("%Y-%-m-%-d %H:%M:%S")
-      rtime                  = t_time.strftime("%a, %d %b %Y %H:%M:%S")
-      xml_data               = gen_xml(rtime, posttime)
+      ct = URI::encode(f.name.to_s.encode "GBK", "UTF-8")
+      ci = URI::encode(f.contact_info.to_s.encode "GBK", "UTF-8")
+      memo = URI::encode(f.comment.to_s.encode "GBK", "UTF-8")
+      mac = URI::encode(f.mac.to_s.encode "GBK", "UTF-8")
+      uri = URI.parse("http://221.174.16.37/chinatt2/postresult_f2_2.php?provincecode=19&citycode=#{cc}&operatorcode=2&contact=#{ct}&contactinfo=#{ci}&no=#{cno}&MACADDR=#{mac}&ver=2.0.3&memo=#{memo}")
+      t_time = Time.now - 30.second
+      posttime = t_time.strftime("%Y-%-m-%-d %H:%M:%S")
+      rtime = t_time.strftime("%a, %d %b %Y %H:%M:%S")
+      xml_data = gen_xml(rtime, posttime)
 
       # Create the HTTP objects
-      http                   = Net::HTTP.new(uri.host, uri.port)
-      request                = Net::HTTP::Post.new(uri.request_uri)
+      http = Net::HTTP.new(uri.host, uri.port)
+      request = Net::HTTP::Post.new(uri.request_uri)
       request['conten-type'] = 'text/xml'
-      request.body           = xml_data.to_s
+      request.body = xml_data.to_s
 
       # Send the request
-      response               = http.request(request)
+      response = http.request(request)
       puts response.body
 
     end
 
     def get_client_no(cc, f)
-      ct         = URI::encode(f.name.to_s.encode "GBK", "UTF-8")
-      ci         = URI::encode(f.contact_info.to_s.encode "GBK", "UTF-8")
-      memo       = URI::encode(f.comment.to_s.encode "GBK", "UTF-8")
-      mac        = URI::encode(f.mac.to_s.encode "GBK", "UTF-8")
+      ct = URI::encode(f.name.to_s.encode "GBK", "UTF-8")
+      ci = URI::encode(f.contact_info.to_s.encode "GBK", "UTF-8")
+      memo = URI::encode(f.comment.to_s.encode "GBK", "UTF-8")
+      mac = URI::encode(f.mac.to_s.encode "GBK", "UTF-8")
       get_no_uri = URI.parse("http://221.174.16.37/chinatt2/clientno.php?actiontype=getclientno&provincecode=19&citycode=#{cc}&operatorcode=2&contact=#{ct}&contactinfo=#{ci}&MACADDR=#{mac}&ver=2.0.3&memo=#{memo}&id=&no=")
       #get_no_uri = URI.parse("http://221.174.16.37/chinatt2/clientno.php?actiontype=getclientno&provincecode=19&citycode=#{cc}&operatorcode=1&contact=%C0%EE%C4%FE&contactinfo=10050&MACADDR=08-00-27-00-9C-11&ver=2.0.3&memo=%B5%E7%D0%C5%D3%C3%BB%A7&id=&no=")
-      http       = Net::HTTP.new(get_no_uri.host, get_no_uri.port)
-      get_r      = Net::HTTP::Get.new get_no_uri.request_uri
-      response   = http.request(get_r)
+      http = Net::HTTP.new(get_no_uri.host, get_no_uri.port)
+      get_r = Net::HTTP::Get.new get_no_uri.request_uri
+      response = http.request(get_r)
       #puts response.body
 
-      arr_tmp    = response.body.to_s.split
-      ClientNo.create(c_no: arr_tmp[1], city_code_id: cc, user_id: 1, operator_code: 2)
-      arr_tmp[1]
+      arr_tmp = response.body.to_s.split
+      unless arr_tmp[1].blank?
+        ClientNo.create(c_no: arr_tmp[1], city_code_id: cc, user_id: 1, operator_code: 2)
+        arr_tmp[1]
+      end
       #puts no
       #tt = { :contact => '李宁' }.to_query
     end
