@@ -18,6 +18,7 @@ class LoginController < ApplicationController
         session[:user_id]      = user.id
         session[:company]      = user.company
         session[:city_code_id] = user.city_code_id
+        session[:province]     = user.province
         redirect_to main_index_url
       elsif Time.now >= user.expire_date
         flash[:error] = '阁下的帐号已过期，考虑到本系统主人也是一个苦逼的程序猿，各位就赞助一点银两吧!'

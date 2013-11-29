@@ -17,9 +17,11 @@ class MainController < ApplicationController
     ccn = session[:city_code_id]
     #测试次数
     cs  = params[:cs]
+    #省份
+    prv = session[:province]
     #计数器默认为0，然后累加至cs所指定的次数，status默认为0，如果测试完成改为1
     if Time.now < User.find(session[:user_id]).expire_date
-      TestDb.create(city_code: ccn, cs: cs, count: 0, status: 0, user_id: session[:user_id], year: Time.now.year, month: Time.now.month)
+      TestDb.create(city_code: ccn, cs: cs, count: 0, status: 0, user_id: session[:user_id], year: Time.now.year, month: Time.now.month, province: prv)
     end
   end
 
