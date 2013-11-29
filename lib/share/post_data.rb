@@ -43,8 +43,10 @@ module PostData
       #puts response.body
 
       arr_tmp    = response.body.to_s.split
-      ClientNo.create(c_no: arr_tmp[1], city_code_id: cc, user_id: uid, operator_code: 2, province: prv)
-      arr_tmp[1]
+      unless arr_tmp[1].blank?
+        ClientNo.create(c_no: arr_tmp[1], city_code_id: cc, user_id: uid, operator_code: 2, province: prv)
+        arr_tmp[1]
+      end
       #puts no
       #tt = { :contact => '李宁' }.to_query
     end
