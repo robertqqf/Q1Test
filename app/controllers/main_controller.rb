@@ -9,7 +9,7 @@ class MainController < ApplicationController
 
   def q1_test
     @cc = CityCode.all
-    @cs = [[10, 10], [20, 20], [30, 30]]
+    @cs = [[1, 1], [3, 3], [5, 5], [8, 8], [10, 10], [20, 20], [30, 30]]
   end
 
   def p_data
@@ -21,6 +21,8 @@ class MainController < ApplicationController
     prv = session[:province]
     puts '-'*50
     puts prv
+    puts ccn
+    puts cs
     puts '-'*50
     #计数器默认为0，然后累加至cs所指定的次数，status默认为0，如果测试完成改为1
     if Time.now < User.find(session[:user_id]).expire_date
