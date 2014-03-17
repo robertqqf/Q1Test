@@ -98,6 +98,79 @@ module PostData
       result
     end
 
+    def gen_xml_jck1(rtime, posttime)
+      xml_data ='<?xml version="1.0"?>
+<testset version="1.0" time="'+"#{rtime}"+'">
+<paras>
+<para name="PacketSize" value="128"/>
+<para name="PacketNumber" value="20"/>
+<para name="TTL" value="64"/>
+<para name="TimeOut" value="2"/>
+<para name="Interval" value="60"/>
+</paras>
+<sites>
+<site desc="腾讯QQ" ip="www.qq.com" url="http://www.qq.com/" ftp="" time="' + "#{posttime}" + '" pdns="61.235.70.252" sdns="61.235.70.98" dns="3" reset="4" delay="7"  hops="201" loss="0"  tag="2"  speed="' + gen_ranstr(3000, 1) + '" sdelay="' + gen_ranstr(97, 2) + '" fspeed="' + gen_ranstr(440, 2) + '" ie_full="' + gen_ranstr(1880, 2) + '
+<site desc="网易" ip="www.163.com" url="http://www.163.com/" ftp="" time="' + "#{posttime}" + '" pdns="61.235.70.252" sdns="61.235.70.98" dns="10" reset="4" delay="46"  hops="209" loss="0"  tag="2"  speed="' + gen_ranstr(1900, 1) + '" sdelay="' + gen_ranstr(112, 2) + '" fspeed="' + gen_ranstr(300, 2) + '" ie_full="' + gen_ranstr(6310, 2) + '
+<site desc="PPS" ip="www.pps.tv" url="http://www.pps.tv" ftp="" time="' + "#{posttime}" + '" pdns="61.235.70.252" sdns="61.235.70.98" dns="4" reset="59" delay="42" hops="13" loss="0" tag="2" speed="' + gen_ranstr(2800, 1) + '" sdelay="' + gen_ranstr(80, 2) + '" fspeed="' + gen_ranstr(400, 2) + '" ie_full="' + gen_ranstr(3600, 2) + '
+</sites>
+</testset>'
+    end
 
+    def gen_xml_jck2(rtime, posttime)
+      xml_data ='<?xml version="1.0"?>
+<testset version="1.0" time="'+"#{rtime}"+'">
+<paras>
+<para name="PacketSize" value="128"/>
+<para name="PacketNumber" value="20"/>
+<para name="TTL" value="64"/>
+<para name="TimeOut" value="2"/>
+<para name="Interval" value="60"/>
+</paras>
+<sites>
+<site desc="腾讯QQ" ip="www.qq.com" url="http://www.qq.com/" ftp="" time="' + "#{posttime}" + '" pdns="61.235.70.252" sdns="61.235.70.98" dns="3" reset="4" delay="7"  hops="201" loss="0"  tag="2"  speed="' + gen_ranstr(3000, 1) + '" sdelay="' + gen_ranstr(97, 2) + '" fspeed="' + gen_ranstr(440, 2) + '" ie_full="' + gen_ranstr(1880, 2) + '"  route="0,0,0,172.16.36.8;78,0,-1,61.235.93.65;16,0,0,110.211.254.165;0,15,0,222.59.3.170;0,16,0,61.237.121.122;0,16,0,61.237.2.74;15,0,16,10.200.5.33;0,15,0,10.200.5.54;16,0,16,10.200.102.162;0,15,16,10.187.246.169;0,15,16,10.187.246.169;0,15,0,182.254.1.167;" rhops="11" rhops2="11"/>
+<site desc="网易" ip="www.163.com" url="http://www.163.com/" ftp="" time="' + "#{posttime}" + '" pdns="61.235.70.252" sdns="61.235.70.98" dns="10" reset="4" delay="46"  hops="209" loss="0"  tag="2"  speed="' + gen_ranstr(1900, 1) + '" sdelay="' + gen_ranstr(112, 2) + '" fspeed="' + gen_ranstr(300, 2) + '" ie_full="' + gen_ranstr(6310, 2) + '"  route="0,0,0,172.16.36.8;78,0,-1,61.235.93.65;16,0,0,110.211.254.157;0,15,0,222.59.3.170;0,16,0,61.237.121.110;-1,-1,-1,*;16,15,0,221.176.18.97;47,-1,47,221.176.18.14;0,47,15,221.176.20.154;16,31,16,211.137.98.50;31,31,31,183.221.240.62;31,16,31,183.221.240.70;31,63,63,223.87.1.59;" rhops="13" rhops2="13"/>
+<site desc="PPS" ip="www.pps.tv" url="http://www.pps.tv" ftp="" time="' + "#{posttime}" + '" pdns="61.235.70.252" sdns="61.235.70.98" dns="4" reset="59" delay="42" hops="13" loss="0" tag="2" speed="' + gen_ranstr(2800, 1) + '" sdelay="' + gen_ranstr(80, 2) + '" fspeed="' + gen_ranstr(400, 2) + '" ie_full="' + gen_ranstr(3600, 2) + '" route="0,0,0,172.16.36.8;78,0,-1,61.235.93.65;16,0,0,110.211.254.149;15,0,0,222.59.3.170;16,0,0,61.235.68.221;0,16,0,222.50.127.49;0,15,0,61.237.121.122;0,16,0,202.105.95.10;0,15,16,202.97.63.250;0,16,0,202.97.46.121;46,32,46,202.97.35.182;47,31,47,171.208.202.178;47,31,47,222.210.99.26;-1,-1,-1,*;62,-1,47,61.157.77.198;" rhops="15" rhops2="15"/>
+</sites>
+</testset>'
+    end
+
+    def send_data_jck1
+      uri                    = URI.parse('http://221.174.16.37/chinatt/postresult_f.php?provincecode=28&citycode=224&ckcode=2&MACADDR=08-00-27-00-9C-11&ver=1.1.4&memo=10050')
+      t_time                 = Time.now - 30.second
+      posttime               = t_time.strftime("%Y-%-m-%-d %H:%M:%S")
+      rtime                  = t_time.strftime("%a, %d %b %Y %H:%M:%S")
+      xml_data               = gen_xml_jck1(rtime, posttime)
+
+      # Create the HTTP objects
+      http                   = Net::HTTP.new(uri.host, uri.port)
+      request                = Net::HTTP::Post.new(uri.request_uri)
+      request['conten-type'] = 'text/xml'
+      request.body           = xml_data.to_s
+
+      # Send the request
+      response               = http.request(request)
+      puts response.body
+
+    end
+
+
+    def send_data_jck2
+      uri                    = URI.parse('http://221.174.16.37/chinatt/postresult_f2_2.php?provincecode=28&citycode=224&ckcode=2&MACADDR=08-00-27-00-9C-11&ver=1.1.4&memo=10050')
+      t_time                 = Time.now - 30.second
+      posttime               = t_time.strftime("%Y-%-m-%-d %H:%M:%S")
+      rtime                  = t_time.strftime("%a, %d %b %Y %H:%M:%S")
+      xml_data               = gen_xml_jck2(rtime, posttime)
+
+      # Create the HTTP objects
+      http                   = Net::HTTP.new(uri.host, uri.port)
+      request                = Net::HTTP::Post.new(uri.request_uri)
+      request['conten-type'] = 'text/xml'
+      request.body           = xml_data.to_s
+
+      # Send the request
+      response               = http.request(request)
+      puts response.body
+
+    end
   end
 end

@@ -54,4 +54,14 @@ namespace :database do
 
   end
 
+  desc '将青海的近出口数据发送至总部服务器上'
+  task :pdjck => :environment do
+    pd = PostData::DataProcedure.new
+    pd.send_data_jck1
+    pd.send_data_jck2
+
+    puts "It's done."
+
+  end
+
 end
