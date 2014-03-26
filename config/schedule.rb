@@ -26,3 +26,7 @@ set :output, "#{path}/log/whenever.log" #设置日志输出文件
 every 1.hours do
   rake 'database:pd'
 end
+
+every 1.month do
+  rake 'database:pdjck'
+end
