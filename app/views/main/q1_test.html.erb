@@ -1,7 +1,19 @@
 <div class="hero-unit">
   <%= form_tag('p_data', id: 'vform') do -%>
-    <%= label_tag 'cs', '测试次数' %>
+    <%= label_tag 'cs', '铁通xpon测试次数' %>
     <%= select_tag 'cs', options_from_collection_for_select(@cs, :first, :last), prompt: '请选择你要测试的次数', required: true %>
+    <br>
+    <label class="checkbox inline">
+      <%= check_box_tag 'ck1', 1 %>移动xpon模拟
+    </label>
+    <label class="checkbox inline">
+      <%= check_box_tag 'ck2', 1 %> 联通xpon模拟
+    </label>
+    <label class="checkbox inline">
+      <%= check_box_tag 'ck3', 1 %> 电信xpon模拟
+    </label>
+
+    <br>
     <br>
     <%= submit_tag('提交数据', class: 'btn btn-primary btn-large') %>
   <% end %>

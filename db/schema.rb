@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131129135714) do
+ActiveRecord::Schema.define(version: 20140714153508) do
 
   create_table "city_codes", force: true do |t|
     t.string   "city_name"
@@ -31,12 +31,32 @@ ActiveRecord::Schema.define(version: 20131129135714) do
     t.integer  "province"
   end
 
+  create_table "cmcc_cis", force: true do |t|
+    t.text     "name"
+    t.text     "contact_info"
+    t.text     "comment"
+    t.text     "mac"
+    t.integer  "company"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "contact_infos", force: true do |t|
     t.string   "name"
     t.string   "contact_info"
     t.string   "comment"
     t.string   "mac"
     t.integer  "company",      default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tele_cis", force: true do |t|
+    t.text     "name"
+    t.text     "contact_info"
+    t.text     "comment"
+    t.text     "mac"
+    t.integer  "company"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -52,6 +72,12 @@ ActiveRecord::Schema.define(version: 20131129135714) do
     t.integer  "year"
     t.integer  "month"
     t.integer  "province"
+    t.integer  "cmcc_xpon"
+    t.integer  "cmcc_status"
+    t.integer  "union_xpon"
+    t.integer  "union_status"
+    t.integer  "tele_xpon"
+    t.integer  "tele_status"
   end
 
   create_table "test_logs", force: true do |t|
@@ -60,6 +86,16 @@ ActiveRecord::Schema.define(version: 20131129135714) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "province"
+  end
+
+  create_table "union_cis", force: true do |t|
+    t.text     "name"
+    t.text     "contact_info"
+    t.text     "comment"
+    t.text     "mac"
+    t.integer  "company"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

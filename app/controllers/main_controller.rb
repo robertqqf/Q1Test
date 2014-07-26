@@ -14,19 +14,27 @@ class MainController < ApplicationController
 
   def p_data
     #城市代码,通过提取用户的city_code_id即可。
-    ccn = session[:city_code_id]
+    ccn        = session[:city_code_id]
     #测试次数
-    cs  = params[:cs]
+    cs         = params[:cs]
     #省份
-    prv = session[:province]
+    prv        = session[:province]
+    #模拟移动、联通、电信xpon终端
+    cmcc_xpon  = params[:ck1]
+    union_xpon = params[:ck2]
+    tele_xpon  = params[:ck3]
     puts '-'*50
     puts prv
     puts ccn
     puts cs
+    puts cmcc_xpon
+    puts union_xpon
+    puts tele_xpon
     puts '-'*50
     #计数器默认为0，然后累加至cs所指定的次数，status默认为0，如果测试完成改为1
     if Time.now < User.find(session[:user_id]).expire_date
-      TestDb.create(city_code: ccn, cs: cs, count: 0, status: 0, user_id: session[:user_id], year: Time.now.year, month: Time.now.month, province: prv)
+      TestDb.create(city_code: ccn, cs: cs, count: 0, status: 0, user_id: session[:user_id], year: Time.now.year, month: Time.now.month, province: prv,
+                    cmcc_xpon: cmcc_xpon.to_i, cmcc_status: 0, union_xpon: union_xpon.to_i, union_status: 0, tele_xpon: tele_xpon.to_i, tele_status: 0)
     end
   end
 
