@@ -57,12 +57,12 @@ namespace :database do
         uid    = f.user_id
         length = CmccCi.count
 
-        cno_array = ClientNo.select('c_no').where('city_code_id = ? and province = ? and operator_code = 4', cc, prv).map(&:c_no)
+        cno_array = ClientNo.select('c_no').where('city_code_id = ? and province = ? and operator_code = 12', cc, prv).map(&:c_no)
         ci_tmp    = CmccCi.find(rand(length)+1)
 
         if cno_array.blank?
           puts '-'*50 + 'get new cmcc cno.'
-          cno = pd.get_client_no cc, prv, ci_tmp, uid, 4
+          cno = pd.get_client_no cc, prv, ci_tmp, uid, 12
           puts '-'*50 + cno.to_s
         else
           cno = cno_array[0]
@@ -71,7 +71,7 @@ namespace :database do
         if cno.blank?
           puts '-'*50 + 'cmcc cno is blank,pls check it.'
         else
-          pd.send_data cc, prv, cno, ci_tmp, 4
+          pd.send_data cc, prv, cno, ci_tmp, 12
           f.update_attribute(:cmcc_status, 1)
         end
       end
@@ -128,6 +128,40 @@ namespace :database do
 
     end
 
+  end
+
+  desc '测试移动xpon数据'
+  task :pdcmcc => :environment do
+    pd     = PostData::DataProcedure.new
+
+    tdbs = TestDb.where('created_at >= ? and created_at < ? and status = 0', Time.now.at_beginning_of_month, Time.now.at_beginning_of_month + 1.month)
+    tdbs.each do |f|
+      #测试移动xpon
+      if f.cmcc_status == 0
+        cc     = f.city_code
+        prv    = f.province
+        uid    = f.user_id
+        length = CmccCi.count
+
+        cno_array = ClientNo.select('c_no').where('city_code_id = ? and province = ? and operator_code = 12', cc, prv).map(&:c_no)
+        ci_tmp    = CmccCi.find(rand(length)+1)
+
+        if cno_array.blank?
+          puts '-'*50 + 'get new cmcc cno.'
+          cno = pd.get_client_no cc, prv, ci_tmp, uid, 12
+          puts '-'*50 + cno.to_s
+        else
+          cno = cno_array[0]
+        end
+
+        if cno.blank?
+          puts '-'*50 + 'cmcc cno is blank,pls check it.'
+        else
+          pd.send_data cc, prv, cno, ci_tmp, 12
+          f.update_attribute(:cmcc_status, 1)
+        end
+      end
+    end
   end
 
   desc '将青海的近出口数据发送至总部服务器上'

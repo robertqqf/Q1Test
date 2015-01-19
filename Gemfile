@@ -5,7 +5,7 @@ gem 'rails', '4.0.0'
 
 gem 'whenever'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'sqlite3','1.3.10'
 gem 'execjs'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -36,6 +36,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'debase', '~> 0.1.1'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
